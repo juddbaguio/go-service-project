@@ -9,8 +9,8 @@ type Server interface {
 	ListenAndServe() error
 }
 
-func Start(container Server) {
-	if err := container.ListenAndServe(); err != nil {
+func Start(server Server) {
+	if err := server.ListenAndServe(); err != nil {
 		log.Println(err)
 		os.Exit(1)
 	}
