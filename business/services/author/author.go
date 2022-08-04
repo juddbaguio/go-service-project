@@ -1,24 +1,25 @@
 package author_service
 
 import (
+	"go-service-project/business/domain"
 	"go-service-project/business/interface/data"
 
 	"go.uber.org/zap"
 )
 
-type Wrapper struct {
+type Container struct {
 	authorRepo data.AuthorRepository
 	logger     *zap.Logger
 }
 
-func New(authorRepo data.AuthorRepository, logger *zap.Logger) *Wrapper {
-	return &Wrapper{
+func New(authorRepo data.AuthorRepository, logger *zap.Logger) *Container {
+	return &Container{
 		authorRepo: authorRepo,
 		logger:     logger,
 	}
 }
 
-func (w *Wrapper) GetAuthor() {
+func (w *Container) GetAuthor() domain.Author {
 	w.logger.Info("Getting Author")
-	w.authorRepo.GetAuthor()
+	return w.authorRepo.GetAuthor()
 }

@@ -1,24 +1,27 @@
 package article_service
 
 import (
+	"go-service-project/business/domain"
 	"go-service-project/business/interface/data"
 
 	"go.uber.org/zap"
 )
 
-type Wrapper struct {
+type Container struct {
 	articleRepo data.ArticleRepository
 	logger      *zap.Logger
 }
 
-func New(articleRepo data.ArticleRepository, logger *zap.Logger) *Wrapper {
-	return &Wrapper{
+func New(articleRepo data.ArticleRepository, logger *zap.Logger) *Container {
+	return &Container{
 		articleRepo: articleRepo,
 		logger:      logger,
 	}
 }
 
-func (w *Wrapper) GetArticleList() {
+func (w *Container) GetArticleList() []domain.Article {
 	w.logger.Info("Fetching Articles")
-	w.articleRepo.GetArticleList()
+	articleList := w.articleRepo.GetArticleList()
+
+	return articleList
 }

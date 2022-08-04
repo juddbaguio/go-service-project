@@ -9,6 +9,7 @@ require (
 )
 
 require (
+	github.com/go-chi/chi/v5 v5.0.7 // indirect
 	github.com/go-sql-driver/mysql v1.6.0 // indirect
 	github.com/golang/snappy v0.0.1 // indirect
 	github.com/jackc/chunkreader/v2 v2.0.1 // indirect
