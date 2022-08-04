@@ -2,6 +2,7 @@ package main
 
 import (
 	"go-service-project/business/data/repositories/author"
+	"go-service-project/business/protocol/http"
 	author_http "go-service-project/business/protocol/http/author"
 	"os"
 
@@ -26,6 +27,5 @@ func main() {
 	authorSrv := author_service.New(articleRepo, zap)
 
 	authorHttp := author_http.NewHTTP(zap, authorSrv)
-
-	authorHttp.ListenAndServe()
+	http.Start(authorHttp)
 }
