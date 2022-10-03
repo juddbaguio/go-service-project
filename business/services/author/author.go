@@ -23,3 +23,15 @@ func (w *Container) GetAuthor() domain.Author {
 	w.logger.Info("Getting Author")
 	return w.authorRepo.GetAuthor()
 }
+
+func (w *Container) TxGetAuthor() (domain.Author, error) {
+	authorTxRepo := w.authorRepo.BeginTx()
+	defer authorTxRepo.Rollback()
+
+	author := authorTxRepo.GetAuthor()
+	if err := authorTxRepo.Commit(); err != nil {
+		return domain.Author{}, err
+	}
+
+	return author, nil
+}
