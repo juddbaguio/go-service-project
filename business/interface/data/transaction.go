@@ -1,6 +1,5 @@
 package data
 
 type Transaction interface {
-	Commit() error
-	Rollback() error
+	Do(func(articleRepo ArticleRepository, authorRepo AuthorRepository) error) error
 }
